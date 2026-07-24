@@ -1,0 +1,18 @@
+-- 1. Crear la función del trigger
+CREATE OR REPLACE FUNCTION fn_trg_validar_prima_produccion()
+RETURNS TRIGGER AS $$
+BEGIN
+    -- # Verificamos si la prima es menor a 0
+    IF NEW.prima < 0 THEN
+        -- # Forzamos el valor a 0 en lugar de cancelar la inserción
+        NEW.prima := 0;
+    END IF;
+    RETURN NEW; -- # Retorna la nueva fila modificada para que se inserte
+END;
+$$ LANGUAGE plpgsql;
+
+-- 2. Crear el trigger
+CREATE TRIGGER trg_validar_prima
+BEFORE INSERT OR UPDATE ON produccion_2026
+FOR EACH ROW
+EXECUTE FUNCTION fn_trg_validar_prima_produccion();
