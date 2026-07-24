@@ -1,0 +1,16 @@
+CREATE OR REPLACE FUNCTION fn_trg_formatear_nombres()
+RETURNS TRIGGER AS $$
+BEGIN
+    -- # Convertimos todo el texto a mayúsculas usando UPPER()
+    NEW.asegurado := UPPER(NEW.asegurado);
+    NEW.primer_apellido := UPPER(NEW.primer_apellido);
+    NEW.segundo_apellido := UPPER(NEW.segundo_apellido);
+    NEW.nombres := UPPER(NEW.nombres);
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_formatear_masivos
+BEFORE INSERT ON sabana_polizas_emasivos
+FOR EACH ROW
+EXECUTE FUNCTION fn_trg_formatear_nombres();
