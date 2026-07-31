@@ -1,0 +1,11 @@
+SELECT 
+    p.campo_cedula AS cedula_cobrada,
+    p.campo_forma_pago AS via_pago,
+    p.campo_ultimo_mes AS mes_cargo,
+    e.producto,
+    o.estado AS status_oficial,
+    o.valor AS monto_cobrado
+FROM sabana_pagos_emasivos p
+LEFT JOIN sabana_polizas_emasivos e ON p.campo_cedula = '099' || RIGHT(e.id_cliente, 7)
+LEFT JOIN oficio_pagos_recurrentes o ON p.campo_ultimo_mes = o.mes
+WHERE o.estado IS NULL OR o.estado != 'Cobrado';
