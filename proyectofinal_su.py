@@ -14,6 +14,9 @@ Original file is located at
     https://colab.research.google.com/drive/1cQpkyPOahJ_Xle5KEEUFPx3Ly-MYwW44
 
 <a href="https://colab.research.google.com/github/andressanchez-gb/ProyectoFinal-SU/blob/Siniestros_Reservas/ProyectoFinal_SU.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+    https://colab.research.google.com/drive/1dt3ngwAzKIv4Z1BlyNsIW9xE1JtUIyo2
+
+<a href="https://colab.research.google.com/github/andressanchez-gb/ProyectoFinal-SU/blob/Querys/ProyectoFinal_SU.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 """
 
 import pandas as pd
@@ -27,6 +30,7 @@ DATABASE_URL = "postgresql://postgres.uyecvaskgaqtjymeswkp:1A*23456ssASñ@aws-0-
 #Ajuste Gianni
 #Ajuste Santiago
 
+#Ajuste Andres
 engine = create_engine(DATABASE_URL)
 df = pd.read_sql("select * from sabana_polizas_emasivos LIMIT 5", engine)
 df.head()
