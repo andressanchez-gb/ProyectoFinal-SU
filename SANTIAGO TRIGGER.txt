@@ -1,0 +1,15 @@
+CREATE OR REPLACE FUNCTION fn_trg_validar_fechas_siniestro()
+RETURNS TRIGGER AS $$
+BEGIN
+    -- # Validar lógica de tiempos
+    IF NEW.fec_aviso < NEW.fec_hora_reclamo THEN
+        RAISE EXCEPTION 'La fecha de aviso no puede ser menor a la fecha del reclamo';
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_fechas_siniestro
+BEFORE INSERT OR UPDATE ON stro_header
+FOR EACH ROW
+EXECUTE FUNCTION fn_trg_validar_fechas_siniestro();
