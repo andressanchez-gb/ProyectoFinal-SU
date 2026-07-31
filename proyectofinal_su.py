@@ -16,6 +16,7 @@ DATABASE_URL = "postgresql://postgres.uyecvaskgaqtjymeswkp:1A*23456ssASñ@aws-0-
 #"postgresql://postgres:1A*23456ssASñ@db.uyecvaskgaqtjymeswkp.supabase.co:6544/postgres"
 
 # Ajuste david
+# Ajuste Robert
 engine = create_engine(DATABASE_URL)
 df = pd.read_sql("select * from sabana_polizas_emasivos LIMIT 5", engine)
 df.head()
